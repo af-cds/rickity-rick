@@ -23,7 +23,7 @@ fetchCharacters()
 
 async function fetchCharacters() {
 
-    let url =  `https://rickandmortyapi.com/api/character?page=${page}`
+    let url =  `https://rickandmortyapi.com/api/character?page=${page}&name=${searchQuery}`
     const response = await fetch(url)
     const data = await response.json()
 
@@ -64,4 +64,27 @@ async function fetchCharacters() {
 
 
 // update pagination element
+
+// searchBar.addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   const searchBarData = new FormData(event.target);
+//   const data = Object.fromEntries(searchBarData);
+//   searchQuery = data.query;
+//   fetchCharacters()
+//   searchBar.reset();
+// });
+
+searchBar.addEventListener("submit", (event) => {
+  
+  event.preventDefault();
+  const searchBarData = new FormData(event.target);
+  const data = Object.fromEntries(searchBarData);
+  searchQuery = data.query;
+
+  fetchCharacters()
+
+  searchBar.reset()
+
+})
+
 
