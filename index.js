@@ -11,7 +11,7 @@ const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
-let maxPage = 42;
+let maxPage;
 let page = 1;
 let searchQuery = "";
 
@@ -29,7 +29,11 @@ async function fetchCharacters() {
 
     // data needed - the src of the image, the name of the character, the status, type and occurrences values
 
+    maxPage = data.info.pages 
+    console.log(maxPage)
+
     cardContainer.innerHTML = ''
+
     pagination.innerHTML = `${page} / ${maxPage}`
 
     const listOfCharacters = data.results
@@ -49,7 +53,7 @@ async function fetchCharacters() {
     }
 
     nextButton.addEventListener('click', (event) => {
-     if (page < 42) { page ++
+     if (page < maxPage) { page ++
       fetchCharacters()
       console.log(page)
       pagination.innerHTML = `${page} / ${maxPage}` }
