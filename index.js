@@ -29,8 +29,8 @@ async function fetchCharacters() {
     const data = await response.json()
 
     // data needed - the src of the image, the name of the character, the status, type and occurrences values
-    
-    // console.log(data.results)
+
+    cardContainer.innerHTML = ''
 
     const listOfCharacters = data.results
     const specifiedCharacters = listOfCharacters.map(result =>
@@ -49,4 +49,4 @@ async function fetchCharacters() {
     }
 
 
-   
+  
