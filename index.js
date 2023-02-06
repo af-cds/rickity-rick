@@ -1,4 +1,4 @@
-import {createCharacterCard} from "./components/card/card.js"
+import createCharacterCard from "./components/card/card.js"
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -11,15 +11,17 @@ const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
-let maxPage = 20;
+let maxPage;
 let page = 1;
 let searchQuery = "";
-
 
 
 // fetching-data with async function - import from https://rickandmortyapi.com/api/character
 
 const url = "https://rickandmortyapi.com/api/character"
+
+fetchCharacters()
+
 
 async function fetchCharacters() {
 
@@ -28,29 +30,23 @@ async function fetchCharacters() {
 
     // data needed - the src of the image, the name of the character, the status, type and occurrences values
     
-    console.log(data.results)
+    // console.log(data.results)
 
     const listOfCharacters = data.results
-    const specifiedCharacters = listOfCharacters.map(result => 
-      ({src: result.image, name: result.name, status: result.status,
-        type: result.type, occurance: result.episode.length}))
-
+    const specifiedCharacters = listOfCharacters.map(result =>
+     ({ src: result.image, 
+    name: result.name, 
+    status: result.status,
+    type: result.type,
+    occurance: result.episode.length }))
+      
     console.log(specifiedCharacters)
 
     specifiedCharacters.forEach(character => {
       const newCharacter = createCharacterCard(character)
-      
-      render(newCharacter)
-    })
+       cardContainer.append(newCharacter)
+      })  
+    }
 
-    
-    // return data
-  }
-  
-
-  fetchCharacters()
-  createCharacterCard()
-
-  // add data to createCharacterCard function using array methods
 
    
